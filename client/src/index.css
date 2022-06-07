@@ -1,0 +1,15 @@
+*{
+  box-sizing: border-box;
+}
+body{
+margin: 0;
+padding: 0;
+background-color: #222831;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
