@@ -7,11 +7,13 @@ const db = require('./config/db');
 const corsOptions = require('./config/cors-options');
 const credentials = require('./middlewares/credentials');
 const errorHandler = require('./middlewares/errorHandler');
+const {logger} = require("./middlewares/logEvents");
 //variable declartions
 const app = express();
 const PORT = process.env.PORT || 3300;
 
 //middlewares
+app.use(logger);
 app.use(helmet());
 app.use(credentials);
 app.use(cors(corsOptions));

@@ -1,4 +1,5 @@
 const { createCustomError } = require('../config/customError');
+const { logEvents } = require('../middlewares/logEvents');
 const Notes = require('../models/notes.model');
 const getAllNotes = async (req, res, next) => {
     const pageNumber = req.query.page || 1;
