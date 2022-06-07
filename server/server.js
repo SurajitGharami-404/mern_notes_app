@@ -20,8 +20,8 @@ app.use(express.json());
 //routes
 app.use("/api/notes", require('./routes/notes'));
 
-app.use("/*", (req, res) => {
-    return res.status(406).json({ message: "Not found" })
+app.use("*", (req, res) => {
+    return res.status(404).json({ message: "Not found" })
 })
 
 //listening
