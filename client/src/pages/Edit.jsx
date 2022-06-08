@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Header } from "../components";
 import styles from "../styles/add.module.css";
+import { useParams } from "react-router-dom";
 
 const Edit = () => {
   const [notes, setNotes] = useState("");
+  const {id} = useParams();
   const customColor = {'--clr':'#F2A07B'};
   return (
     <section className={styles.container}>

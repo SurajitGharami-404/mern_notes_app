@@ -6,3 +6,9 @@ margin: 0;
 padding: 0;
 background-color: #222831;
 }
+.link:visited,.link:link{
+  display: block;
+  text-decoration: none;
+  background-color: inherit;
+  color: inherit;
+}

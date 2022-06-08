@@ -1,10 +1,15 @@
 import styles from './note.module.css';
+import {format} from "date-fns";
+import { Link } from 'react-router-dom';
 
-const Note = () => {
+const Note = ({note,_id,updatedAt}) => {
   return (
+   
     <article className={styles.container}>
-        <h3 className={styles.note}>Let's start recording !</h3>
-        <h5 className={styles.date}>5/23/2022</h5>
+       <Link to={`/edit/${_id}`} className="link">
+        <h3 className={styles.note}>{note}</h3>
+        <h5 className={styles.date}>{format(new Date(updatedAt),"MM/dd/yyyy")}</h5>
+        </Link>
     </article>
   )
 }

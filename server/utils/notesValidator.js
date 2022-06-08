@@ -13,7 +13,7 @@ const validate = validations => {
     if (errors.isEmpty()) {
       return next();
     }
-
+    console.log(errors.array()[0].msg)
     res.status(400).json({ message: errors.array()[0].msg });
   };
 };

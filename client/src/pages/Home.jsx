@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import { useGetAllNotesQuery } from "../services/notesApi";
 
 const Home = () => {
-  const {data,isLoading,isError,isSuccess} = useGetAllNotesQuery();
-  if(isSuccess) console.log(data)
+  const {data,isLoading,isError,error} = useGetAllNotesQuery();
+  if(isLoading) return(<h1>Loading...</h1>)
+  if(isError) return(<h1>{error?.message}</h1>)
   return (
     <section className={styles.container}>
       <Header />
-      <Details value={0} />
+      <Details value={data?.totalNotes} />
       <div className={styles.noteContainer}>
-        <Note />
+       {
+         data?.notes.map((note,idx)=>(
+           <Note {...note} key={idx}/>
+         ))
+       }
       </div>
       <Link to="/add">
         <span className={styles.icon}>

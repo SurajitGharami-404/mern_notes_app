@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { Header } from "../components";
+import { useCreateNoteMutation } from "../services/notesApi";
 import styles from "../styles/add.module.css";
 
 const Add = () => {
-  const [notes, setNotes] = useState("Create your notes...");
+  const [createNote] = useCreateNoteMutation();
+  const [note, setNote] = useState("");
   const customColor = {'--clr':'#4ECCA3'};
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    try {
+      createNote({note});
+    } catch (error) {
+      console.log(error)
+    }
+  
+  }
   return (
     <section className={styles.container}>
       <Header />
@@ -14,11 +25,11 @@ const Add = () => {
         </span>
         <button className={styles.btn} style={customColor}>Add</button>
       </div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <textarea
           className={styles.textArea}
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
           spellCheck='true'
         ></textarea>
         <button type="submit" className={styles.submit} style={customColor}>
