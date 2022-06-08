@@ -1,12 +1,13 @@
 const { createCustomError } = require('../config/customError');
 const Notes = require('../models/notes.model');
+const countPage = require("../utils/countPage");
 const getAllNotes = async (req, res, next) => {
     const pageNumber = req.query.page || 1;
     try {
-        const skipAmount = 5 * (Number(pageNumber) - 1);
         const limit = 5;
+        const skipAmount = limit * (Number(pageNumber) - 1);
         const totalNotesCount = await Notes.count();
-        const totalPageCount = String(totalNotesCount / 5);
+        const totalPageCount = countPage(totalNotesCount,limit);
         const notesArray = await Notes.find({}, { note: 1, updatedAt: 1 }).limit(limit).skip(skipAmount);
         return res.status(200).json({
             totalPages: totalPageCount,
