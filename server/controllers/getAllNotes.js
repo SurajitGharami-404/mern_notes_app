@@ -8,7 +8,7 @@ const getAllNotes = async (req, res, next) => {
         const skipAmount = limit * (Number(pageNumber) - 1);
         const totalNotesCount = await Notes.count();
         const totalPageCount = countPage(totalNotesCount,limit);
-        const notesArray = await Notes.find({}, { note: 1, updatedAt: 1 }).limit(limit).skip(skipAmount);
+        const notesArray = await Notes.find({}, { note: 1, updatedAt: 1 }).limit(limit).skip(skipAmount).exec();
         return res.status(200).json({
             totalPages: String(totalPageCount),
             currentPageNumber: pageNumber,
